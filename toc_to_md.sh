@@ -40,7 +40,8 @@ do
     quantity=$(echo $table | tr -cd "#" | wc -m) # calculate all '#' in file md
     first_symbol=$(echo $table | head -c 1)
     if [[ $quantity -ne 10 ]] ;then # if in $table more 10 "#" symbols -> skip
-        if [[ $first_symbol == "#" ]]; then``
+        #echo $table
+        if [[ $first_symbol == "#" ]]; then
             echo $table >> $temp_file
         fi
     fi
@@ -73,8 +74,6 @@ COUNTER_subsubsubsubsubparagraph=0
 COUNTER_subsubsubsubsubsubparagraph=0
 COUNTER_subsubsubsubsubsubsubparagraph=0
 COUNTER_subsubsubsubsubsubsubsubparagraph=0
-
-
 
 for table in "${tablearray[@]}"
 do
@@ -113,7 +112,7 @@ do
         link_name="#subsubsubsubsubsubsubsubparagraph"$COUNTER_subsubsubsubsubsubsubsubparagraph
         COUNTER_subsubsubsubsubsubsubsubparagraph=$[COUNTER_subsubsubsubsubsubsubsubparagraph + 1]
     fi  
-    echo -e "$tabs""[**"$table_without_symbol"**]("$link_name")\n" >> $new_table
+    echo -e "$tabs""[**"$table_without_symbol"**]("$link_name")" >> $new_table
 done
 
 
