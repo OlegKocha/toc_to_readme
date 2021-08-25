@@ -39,8 +39,8 @@ for table in "${tablearray[@]}"
 do
     quantity=$(echo $table | tr -cd "#" | wc -m) # calculate all '#' in file md
     first_symbol=$(echo $table | head -c 1)
-    if [[ $quantity < 10 ]] ;then # if in $table more 10 "#" symbols -> skip
-        if [[ $first_symbol == "#" ]]; then
+    if [[ $quantity -ne 10 ]] ;then # if in $table more 10 "#" symbols -> skip
+        if [[ $first_symbol == "#" ]]; then``
             echo $table >> $temp_file
         fi
     fi
