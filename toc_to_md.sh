@@ -39,14 +39,12 @@ for table in "${tablearray[@]}"
 do
     quantity=$(echo $table | tr -cd "#" | wc -m) # calculate all '#' in file md
     first_symbol=$(echo $table | head -c 1)
-    #echo $first_symbol
-    if [[ $quantity < 10 ]] ;then # if in file more 10 "#" symbols -> skip
+    if [[ $quantity < 10 ]] ;then # if in $table more 10 "#" symbols -> skip
         if [[ $first_symbol == "#" ]]; then
             echo $table >> $temp_file
         fi
     fi
 done
-#exit
 
 readarray tablearray < $temp_file # now its tru table in array
 
