@@ -1,13 +1,54 @@
 #!/bin/bash
 
-# Title: Данный скрипт служит для преобразования TOC в tables для Gitlab/Github
-# Date: 16.08.2021
-# Author: OlegKocha
-# Language: bash and python3 
-# Version: 3.3.0
-# Tested on: OS Linux
+function help {
+echo "
+Title: This script is used to convert [TOC] to an anchored table of contents for Gitlab/Github
 
-# Указание название файла Название файла
+How to use in terminal:
+./toc_to_md.sh file.md
+
+Optional arguments:
+    -h, --help - show this help message
+    -v, --version - show this version
+    --author - show author of this script
+"
+}
+
+function version {
+echo "
+Version: 3.4.1
+"
+}
+
+function author {
+echo "
+author: OlegKocha (https://github.com/OlegKocha)
+"
+}
+
+if [[ $1 == "-h" ]]; then
+    help
+    exit
+elif [[ $1 == "--help" ]]; then
+    help
+    exit
+fi
+
+if [[ $1 == "-v" ]]; then
+    version
+    exit
+elif [[ $1 == "--version" ]]; then
+    version
+    exit
+fi
+
+if [[ $1 == "--author" ]]; then
+    author
+    exit
+fi
+
+
+# find name of file
 file=$1
 
 # Temp file name
