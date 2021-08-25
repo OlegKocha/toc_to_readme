@@ -95,7 +95,7 @@ do
         link_name="#subsubsubsubsubsubsubsubparagraph"$COUNTER_subsubsubsubsubsubsubsubparagraph
         COUNTER_subsubsubsubsubsubsubsubparagraph=$[COUNTER_subsubsubsubsubsubsubsubparagraph + 1]
     fi  
-    echo -e "$tabs""[**"$table_without_symbol"**]("$link_name")" >> $new_table
+    echo -e "$tabs""[**"$table_without_symbol"**]("$link_name")\n" >> $new_table
 done
 
 
