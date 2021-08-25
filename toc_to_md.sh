@@ -14,7 +14,7 @@ file=$1
 temp_file='.tempfile.txt'
 
 # New file name with new table for Github/GitLab
-new_table='new_table_'$file'.md'
+new_table='new_table_'$file
 
 
 # Check correct file
@@ -25,6 +25,13 @@ else
     echo 'Its not a MarkDown file or unspecified file'
     exit
 fi
+
+
+echo "# Содержание:" > $new_table
+
+cat $file | grep "#" > $temp_file # find all line with "#"
+
+readarray tablearray < $temp_file # table in array
 
 find_toc=$(cat $file| grep TOC)
 if [ ! -z "$find_toc" ]; then
@@ -38,12 +45,6 @@ else
         exit
     fi
 fi
-
-echo "# Содержание:" > $new_table
-
-cat $file | grep "#" > $temp_file # find all 
-
-readarray tablearray < $temp_file # table in array
 
 # Counters
 COUNTER_introduction=0
@@ -97,10 +98,13 @@ do
     echo -e "$tabs""[**"$table_without_symbol"**]("$link_name")" >> $new_table
 done
 
+
 readarray tablearray < $new_table
+
 
 for table in "${tablearray[@]}"
 do
+    #echo "$table"
     name=$(echo $table | grep -Po '(?<=\[\*\*).*(?=\*\*\])')
     link_name=$(echo $table | grep -Po '(?<=\#).*(?=\))')
     replace="<a name=\"$link_name\"></a>"
@@ -110,6 +114,7 @@ do
     fi
   
 done
+
 
 cat $temp_file >> $new_table # add all new intformation in new file
 
