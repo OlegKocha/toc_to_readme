@@ -26,18 +26,11 @@ author: OlegKocha (https://github.com/OlegKocha)
 "
 }
 
-if [[ $1 == "-h" ]]; then
-    help
-    exit
-elif [[ $1 == "--help" ]]; then
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
     help
     exit
 fi
-
-if [[ $1 == "-v" ]]; then
-    version
-    exit
-elif [[ $1 == "--version" ]]; then
+if [ "$1" == "-v" ] || [ "$1" == "--version" ]; then
     version
     exit
 fi
